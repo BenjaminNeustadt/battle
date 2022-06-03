@@ -1,5 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require './lib/player'
+require './lib/game'
 
 class Battle < Sinatra::Base
   configure :development do
@@ -8,25 +10,25 @@ class Battle < Sinatra::Base
   enable :sessions
   
   get '/' do
-    'Testing infrasturcture working!'
+    # 'Testing infrasturcture working!'
     erb :index
   end
 
   post '/names' do
-    session[:player_1_name] = params[:player_1_name]
-    session[:player_2_name] = params[:player_2_name]
+    player_1 = Player.new(params[:player_1])
+    player_2 = Player.new(params[:player_2])
+    $game = Game.new(player_1, player_2)
     redirect '/play'
   end
 
   get '/play' do
-    @player_1_name = session[:player_1_name]
-    @player_2_name = session[:player_2_name]
+    @game = $game
     erb :play
   end
 
   get '/attack' do
-    @player_1_name = session[:player_1_name]
-    @player_2_name = session[:player_2_name]
+    @game = $game
+    @game.attack(@game.player_2)
     erb :attack
   end
   

@@ -14,5 +14,6 @@ class Player
   def receive_damage
     @hit_points -= 10
   end
-  
 end
+
+#create an instance variable showing the HP: it is created in attr_reder
