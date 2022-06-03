@@ -16,11 +16,10 @@ describe Player do
     end
   end
 
-
   describe '#attack' do
     it 'damages the player' do
       expect(dragon).to receive(:receive_damage)
-      dragon.attack(dragon)
+      slayer.attack(dragon)
     end
   end
 

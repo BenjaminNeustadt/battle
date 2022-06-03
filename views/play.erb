@@ -1,14 +1,9 @@
-<h1><%= @game.player_1.name %> vs. <%= @game.player_2.name %></h1>
+<h1><%= @game.current_turn.name %>'s turn</h1><br>
 
-<%= @game.current_turn.name %>'s turn
-<%= @game.player_2.name %>: <%= @game.player_2.hit_points %>HP
-
-<a href="/attack">Attack</a>
-
-<%# But you could just as well use a form element
-(so long as I changed my feature test to use click_button instead of click_link): %>
-<%# <!-- alternative play.erb -->
+<%= @game.player_1.name %> vs. <%= @game.player_2.name %><br>
+<%= @game.player_1.name %>: <%= @game.player_1.hit_points %>HP<br>
+<%= @game.player_2.name %>: <%= @game.player_2.hit_points %>HP<br>
 
 <form action="/attack">
   <input type="submit" value="Attack">
-</form> %>
+</form> 
